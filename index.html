@@ -1,0 +1,67 @@
+<html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js" integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css" integrity="sha256-NkyhTCRnLQ7iMv7F3TQWjVq25kLnjhbKEVPqGJBcCUg=" crossorigin="anonymous" />
+
+
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDO8U_NQjeXH52wjOTTZtvQQgVtfq4PI5U",
+    authDomain: "sumajgan.firebaseapp.com",
+    databaseURL: "https://sumajgan.firebaseio.com",
+    projectId: "sumajgan",
+    storageBucket: "sumajgan.appspot.com",
+    messagingSenderId: "686294312856",
+    appId: "1:686294312856:web:197485fa2fa64a73f7aded",
+    measurementId: "G-8WD6BD0BFP"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  var storageRef = firebase.storage().ref();
+
+</script>
+
+
+
+<form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone"></form>
+	  
+	  
+	  
+<script>
+Dropzone.options.myAwesomeDropzone = {
+  init: function() {
+    this.on("addedfile", function(file) {
+	
+	var uploadTask = storageRef.child('images/mountains.jpg').put(file);
+
+
+		//storageRef.put(file).then(function(snapshot) {
+		//  console.log('Uploaded a blob or file!');
+		//});
+
+	});
+  }
+};
+</script>  
+
+
+</html>
