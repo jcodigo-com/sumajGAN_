@@ -1,1 +1,0 @@
-# sumajGAN_web
