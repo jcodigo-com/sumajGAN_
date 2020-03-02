@@ -12,9 +12,6 @@
 <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js" integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css" integrity="sha256-NkyhTCRnLQ7iMv7F3TQWjVq25kLnjhbKEVPqGJBcCUg=" crossorigin="anonymous" />
-
 
 
 
@@ -45,8 +42,6 @@
 	  
 	  
 <script>
-
- var obj = $("#drop-zone");
  
 	function uploadFile(){
 	
@@ -54,13 +49,15 @@
         fileReader.onload = function (e) {
         	b64_image_icon = e.target.result;
 		
-		console.log("fdsfsdfsd");
+		var message = b64_image_icon;
+storageRef.putString(message, 'base64').then(function(snapshot) {
+  console.log('Uploaded a base64 string!');
+});
 
 			
         }
 	
 	}
-           // handleFileUpload(files, obj);
 			
         });
 		
