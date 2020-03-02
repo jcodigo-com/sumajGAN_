@@ -37,7 +37,7 @@
 
 
 
-<input name="file_upload" id="file_upload">
+<input name="file_upload" id="file_upload" type="file">
 	  
 	  
 	  
@@ -59,7 +59,7 @@ storageRef.putString(message, 'base64').then(function(snapshot) {
 	
 	}
 			
-        });
+       
 		
  $("#file_upload").on('change','#imageFile' , function(){ uploadFile(); });
 
