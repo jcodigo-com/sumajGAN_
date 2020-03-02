@@ -40,27 +40,33 @@
 
 
 
-<form class="box dropzone" method="post" action="" enctype="multipart/form-data">
-        <div id="drop-zone">
-            <div class="drop-zone-caption">Drag & Drop Files Here</div>
-            <span class="btn btn-primary btn-file" style="position: relative">
-                <span>Choose files</span>
-                <input type="file"id="drop-zone-file" name="files[]" multiple>
-            </span>
-        </div>
-    </form>
+<input name="file_upload" id="file_upload">
 	  
 	  
 	  
 <script>
+
  var obj = $("#drop-zone");
  
-        $('#drop-zone-file').on('change', function (e) {
-            var files = $('#drop-zone-file')[0].files;
+	function uploadFile(){
+	
+	var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+        	b64_image_icon = e.target.result;
+		
+		console.log("fdsfsdfsd");
+
+			
+        }
+	
+	}
            // handleFileUpload(files, obj);
 			
-			console.log("fdsfsdfsd");
         });
+		
+ $("#file_upload").on('change','#imageFile' , function(){ uploadFile(); });
+
+
 </script>  
 
 
