@@ -40,26 +40,27 @@
 
 
 
-<form action=""
-      class="dropzone"
-      id="my-awesome-dropzone"></form>
+<form class="box" method="post" action="" enctype="multipart/form-data">
+        <div id="drop-zone">
+            <div class="drop-zone-caption">Drag & Drop Files Here</div>
+            <span class="btn btn-primary btn-file" style="position: relative">
+                <span>Choose files</span>
+                <input type="file"id="drop-zone-file" name="files[]" multiple>
+            </span>
+        </div>
+    </form>
 	  
 	  
 	  
 <script>
-Dropzone.options.myAwesomeDropzone = {
-  init: function() {
-    this.on("addedfile", function(file) {
-	
-	var uploadTask = storageRef.child('images/mountains.jpg').put(file);
-
-
-		//storageRef.put(file).then(function(snapshot) {
-		//  console.log('Uploaded a blob or file!');
-		});
-
-	}
-  }
+ var obj = $("#drop-zone");
+ 
+        $('#drop-zone-file').on('change', function (e) {
+            var files = $('#drop-zone-file')[0].files;
+            handleFileUpload(files, obj);
+			
+			console.log("fdsfsdfsd");
+        });
 </script>  
 
 
