@@ -45,10 +45,9 @@
  
 	function uploadFile(){
 	
-	var fileReader = new FileReader();
-
 		file = $('#file_upload').get(0).files[0];
-	
+		console.log('Uploaded a blob or file!');
+
 		storageRef.put(file).then(function(snapshot) {
 		  console.log('Uploaded a blob or file!');
 		});
