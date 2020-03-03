@@ -1,0 +1,95 @@
+<html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+
+<div id="lista_clasificar"></div>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDO8U_NQjeXH52wjOTTZtvQQgVtfq4PI5U",
+    authDomain: "sumajgan.firebaseapp.com",
+    databaseURL: "https://sumajgan.firebaseio.com",
+    projectId: "sumajgan",
+    storageBucket: "sumajgan.appspot.com",
+    messagingSenderId: "686294312856",
+    appId: "1:686294312856:web:197485fa2fa64a73f7aded",
+    measurementId: "G-8WD6BD0BFP"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  var storageRef = firebase.storage().ref();
+	var database = firebase.database();
+
+</script>
+
+
+
+	  
+	  
+	  
+<script>
+
+	var query = firebase.database().ref("experimentos").orderByKey();
+query.on("value", function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    // key will be "ada" the first time and "alan" the second time
+    var key = childSnapshot.key;
+    // childData will be the actual contents of the child
+    var childData = childSnapshot.val();
+	 
+	if(childData.status == '2'){
+		
+		$("#lista_clasificar").html("<div id='"+key+"'><table>"+
+		"<tr>"+
+		"<td><img src='"+childData.image_source+"' height='200px' width='200px' ></td>"+
+		"<td><img src='"+childData.image_reference+"' height='200px' width='200px' ></td>"+
+		"</tr> "+
+
+		"<tr>"+
+		"<td><img src='"+childData.dmt+"' height='200px' width='200px' ></td>"+
+		"<td><img src='"+childData.nuevo+"' height='200px' width='200px' ></td>"+
+		"</tr> "+
+		'<tr>'+
+		"<td><button onclick=dmt('"+key+"','"+childData.dmt+"')>Enviar</button></td>"+
+		"<td><button onclick=nuevo('"+key+"','"+childData.nuevo+"')>Enviar</button></td>"+		
+		'</tr>'+
+		" </table>");
+	}
+	
+  });
+}, function(error) {
+  console.error(error);
+});	
+
+
+function dmt(iii, img){
+firebase.database().ref().child('/experimentos/' + iii)
+        .update({ status: "3", respuesta: img });
+	$("#"+iii).remove();
+}
+
+
+function nuevo(iii, img){
+firebase.database().ref().child('/experimentos/' + iii)
+        .update({ status: "3", respuesta: img });
+		$("#"+iii).remove();
+}
+
+</script>  
+
+
+</html>
